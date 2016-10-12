@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>综合搜索</title>
+		<link rel="stylesheet" type="text/css" href="{$Think.const.APP_INDEX}css/search/p_top.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.const.APP_INDEX}css/search/p_hidden.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.const.APP_INDEX}css/search/p_gaoji.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.const.APP_INDEX}css/search/p_condition2.css" />
+
+	</head>
+	<body>
+		<div class="nav_top">
+			<img class="t_log" src="{$Think.const.APP_INDEX}images/search/search_logo.gif">
+			<ul class="t_n">
+				<li value="1"><b>综合&nbsp;&nbsp;</b></li>
+				<li value="2" class="selected"><b>找人&nbsp;&nbsp;</b></li>
+				<li value="3"><b>图片</b></li>
+			</ul>
+		</div>
+
+		<div class="s_top">
+			<!--这里是隐藏需要数据的地方-->
+			<input type="text" name="" id="val" value="{$s_v}"><div class="s_search"></div>
+			<input id="aa" type="hidden" value="{:U('search/person/search_nickname')}">
+			<input id="search_index" type="hidden" value="{:U('search/person/index')}">
+			<input id="clear_one" type="hidden" value="{:U('search/history/clear_one')}">
+			<input id="clear_all" type="hidden" value="{:U('search/history/clear_all')}">
+			<input id="s_v" type="hidden" value="{$s_v}">
+			<input id="ur_s_c" type="hidden" value="{:U('search/person/condition2')}">
+			<input id="ur_gj" type="hidden" value="{:U('search/person/gj')}">
+
+
+			<ul class="t_s">
+				<li value="4"><b>高级搜索&nbsp;</b></li>
+				<li value="5"><b>设置&nbsp;</b></li>
+				<li value="6"><b>帮助</b></li>
+			</ul>
+
+			<div class="condition1">
+				&nbsp;&nbsp;
+				<a href="javascript:void(0)" >全部</a>
+				&nbsp;
+				<a href="javascript:void(0)"><b>昵称</b></a>
+				&nbsp;
+				<a href="javascript:void(0)">标签</a>
+				&nbsp;
+				<a href="javascript:void(0)">学校</a>
+				&nbsp;
+				<a href="javascript:void(0)">公司</a>
+			</div>
+			<div class="condition2">
+				&nbsp;
+				<span class="dq">所有地区</span>
+				<a href="javascript:void(0)" id="dq">[切换]</a>
+				|	
+				<a href="javascript:void(0)" id="yh">所有用户</a>
+				|
+				<a href="javascript:void(0)" id="xb">{$s_s?$s_s:"不限性别"}</a>
+				|
+				<a href="javascript:void(0)" id="nl">{$s_a?$s_a:"不限年龄"}</a>
+			</div>
+			<div class="history">
+				<b style="font-size:13px">搜索历史</b>&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a id="do_clear_all" href="javascript:void(0)">清除</a>
+				<hr>
+				<div class="clear_all">
+			
+				</div>
+			</div>
+		</div>
+
+		<div class="main">
+			<div class="zw">
+				<table>
+			
+				</table>
+			</div>
+
+		</div>
+
+		<div class="hid">
+			
+			<!--切换用户-->
+			<div class="h_user">
+				<div class="h_user_type">
+				<a href="javascript:void(0)">所有用户</a>
+				</div>
+				<div class="h_user_type">
+				<a href="javascript:void(0)">机构认证</a>
+				</div>
+				<div class="h_user_type">
+				<a href="javascript:void(0)">个人认证</a>
+				</div>
+				<div class="h_user_type">
+				<a href="javascript:void(0)">普通用户</a>
+				</div>
+			</div>
+			<!--切换性别-->
+			<div class="h_sex">
+				<div class="h_user_sex">
+				<a href="javascript:void(0)">不限性别</a>
+				</div>
+				<div class="h_user_sex">
+				<a href="javascript:void(0)">性别男性</a>
+				</div>
+				<div class="h_user_sex">
+				<a href="javascript:void(0)">性别女性</a>
+				</div>
+			</div>
+			<!--切换年龄-->
+			<div class="h_age">
+				<div class="h_user_age">
+				<a href="javascript:void(0)">不限年龄</a>
+				</div>
+				<div class="h_user_age">
+				<a href="javascript:void(0)">20岁以下</a>
+				</div>
+				<div class="h_user_age">
+				<a href="javascript:void(0)">20岁~40岁</a>
+				</div>
+				<div class="h_user_age">
+				<a href="javascript:void(0)">40岁以上</a>
+				</div>
+			</div>
+
+			<!--切换地区-->
+			<div class="h_city">
+				<div class="h_city_top">
+					<div id="h_city_l">
+						&nbsp;地区:<span class="sheng"></span><span class="shi"></span>
+					</div>
+					<div id="h_city_r">
+						注册地:
+						<span class="re_city"><a href="javascript:void(0)">河北-廊坊</a></span>&nbsp;
+						<span><a id="h_city_close" href="javascript:void(0)">关闭</span>
+					</div>
+				</div>
+				<hr>
+				<div class="c_list">
+					
+				
+		
+				</div>
+			</div>
+
+			<div class="p_search_hid">
+			</div>
+		</div>
+		<!--遮盖-->
+		<div class="big">
+		</div>
+
+		<div class="gjk">
+			<div class="g_top">
+				&nbsp;&nbsp;<span>高级搜索</span>
+			</div>
+			<div class="g_main">
+				<form method="" action="" name="g_tj">
+					<input type="hidden" class="ur_city" value="{:U('search/person/city')}">
+					<input type="hidden" class="ur_form" value="{:U('search/person/doForm')}">
+					<br><br>
+					&nbsp;昵称:<input type="text" name="nickname" id="s_v_g"><br><br>
+					&nbsp;标签:<input type="text" name="tag"><br><br>
+					&nbsp;学校:<input type="text" name="school"><br><br>
+					&nbsp;公司:<input type="text" name="company"><br><br>
+					&nbsp;用户:<select name="g_user">
+						<option value="1">所有用户</option>
+						<option value="2">机构认证</option>
+						<option value="3">个人认证</option>
+						<option value="4">普通用户</option>
+					</select>
+					<br><br>
+					&nbsp;地点:<span class="city"><select name="g_city" class="g_city">
+						<option value="1">所有地区</option>
+						
+					</select>
+					</span>
+					<br><br>
+
+					&nbsp;年龄:<select name="g_age" id="nl_g">
+						<option value="1">不限</option>
+						<option value="2">20岁以下</option>
+						<option value="3">20~40岁</option>
+						<option value="4">40岁以上</option>
+					</select>
+					<br><br>
+
+					&nbsp;性别:<select name="g_sex" id="xb_g">
+						<option value="1">不限</option>
+						<option value="2">男</option>
+						<option value="3">女</option>
+					</select>
+				</form>
+				<br>
+				&nbsp;<button class="tj">提交</button>
+				&nbsp;<button class="qx">取消</button>
+			</div>
+		</div>
+	<input type="hidden" value="{$s_v}" id="s_v">
+		<input type="hidden" value="{$s_a}" id="s_a">
+		<input type="hidden" value="{$s_s}" id="s_s">
+		<input type="hidden" value="{$s_c}" id="s_c">
+		<input type="hidden" value="{:U('search/person/index')}" id="ur">
+		<script type="text/javascript" src="{$Think.const.APP_INDEX}js/search/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="{$Think.const.APP_INDEX}js/search/gj_tiao.js"></script>
+	</body>
+</html>

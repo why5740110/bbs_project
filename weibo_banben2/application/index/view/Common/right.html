@@ -1,0 +1,84 @@
+<!--==========右侧==========-->
+        <div class="right_left"></div>
+        <div id="right">
+            <!-- <div class="edit_tpl"><a href="" id='set_model'></a></div> -->
+            <!-- 用户头像开始 -->
+            <dl class="user_face">
+                <dt>
+                    <a href="{:U('Person/index')}"><img style="border-radius:100px;width:60px;height:60px;" src="{$Think.const.APP_PUBLIC}/uploads/txpic/{$userdetail['picname']}" width='80' height='80' alt="" /></a>
+                </dt>
+                <!-- <dd><a href="">{$userinfo['nickname']}</a></dd> -->
+            </dl><br>
+            <!-- 用户头像结束 -->
+            <!-- 用户名 -->
+            <div class="renming"><div class="right_left"></div><a href="">{$userinfo['nickname']}</a></div>
+            <!-- 用户粉丝关注信息开始 -->
+            <ul class='num_list'>
+                <li><a href=""><strong>{$guanzhu}</strong><span>关注</span></a></li>
+                <li><a href=""><strong>{$fans}</strong><span>粉丝</span></a></li>
+                <li class='noborder'><a href=""><strong>{$weiboshu}</strong><span>微博</span></a></li>
+            </ul>
+            <!-- 用户粉丝关注信息结束 -->
+            <!-- <div class="touming"></div> -->
+            <!-- 可能感兴趣的人开始 -->
+            <div class="maybe">
+                <fieldset>
+                    <legend>可能感兴趣的人</legend>
+                    <ul>
+                        {if condition="!empty($hyxx)"}
+                            {foreach $hyxx as $vo}
+                            <li>
+                                <dl>
+                                    <dt>
+                                        <a href="{:U('Persongz/index')}?uid={$vo['uid']}"><img style="border-radius:100px;" src="{$Think.const.APP_PUBLIC}/uploads/txpic/{$vo['picname']}" alt="" width='30' height='30'/></a>
+                                    </dt>
+                                    <dd><a href="">{$vo['nickname']}</a></dd>
+                                    <dd>共{$vo['gthy']}个共同好友</dd>
+                                </dl>
+                                <span class='heed_btn add-fl' uid='{$vo['id']}' data="{:U('Indexajax/guanzhu')}" userid="{$userinfo['id']}"><strong>+&nbsp;</strong>关注</span>
+                            </li>
+                            {/foreach}
+                            {else}
+                            <li><span>你没有共同好友！赶紧寻找小伙伴吧！</span></li>
+                        {/if}
+                    </ul>
+                </fieldset>
+            </div>
+            <!-- 可能感兴趣的人结束 -->
+            <!-- <div class="touming"></div> -->
+            <!-- 广告开始 -->
+            <div class="maybe">
+                <fieldset>
+                    <legend>推荐商品</legend>
+                    <ul>
+                        {foreach $guanggao_list_right as $vo}
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="{$vo['link']}"><img src="{$Think.const.APP_PUBLIC}/uploads/guanggao/{$vo['imagename']}" alt="" width='50'/></a>
+                                </dt>
+                                <dd align="center"><a style="line-height:50px;" href="{$vo['link']}" title="{$vo['title']}">{$vo['title']}</a></dd>
+                                <!-- <dd>共10个共同好友</dd> -->
+                            </dl>
+                            <!-- <span class='heed_btn'><strong>+&nbsp;</strong>关注</span> -->
+                        </li><br>
+                        {/foreach}
+                    </ul><br><br>
+                </fieldset>
+            </div>
+            <!-- 广告结束 -->            
+            <!-- <div class="touming"></div> -->
+            <!-- 公告开始 -->
+            <div class="post">
+                <div class='post_line'>
+                    <span>公告栏</span>
+                </div>
+                <ul>
+                    <li><a href="">新浪网DIV+CSS视频教程</a></li>
+                    <li><a href="">新浪网PHP视频教程</a></li>
+                    <li><a href="">新浪网MySQL视频教程</a></li>
+                </ul>
+            </div>
+            <!-- 公告结束 -->
+        </div>
+    </div>

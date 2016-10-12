@@ -1,0 +1,202 @@
+{include file="public/topgz"}
+	  
+	  <!-- ======================================================我的相册开始===============================================================-->
+      <!--/F_rows-->
+      <!--F_cols_main-->
+	 <div class="F_rows_main"> 
+      <div class="F_cols_main">
+      	<!--幻灯浏览-->
+      	<div class="m_browse_menu clearfix">
+		<br>
+            <div class="phto_count M_txta" node-type="photos_info">他的可见照片<span>(共{$gzpic_total}张)</span></div><div class="browse_type"><!-- <a class="M_linke M_slide_sm" href="http://photo.weibo.com/2664098951/photos#" action-type="slide_open"><span class="M_ico M_icon12"></span>幻灯浏览</a> --></div>
+        </div>
+        <!--/幻灯浏览-->
+		
+		<!--页面class="myphoto"  的dt的js控制-->
+		<script>
+			$(function(){
+				$('.myphoto').mouseover(function(){
+					$(this).css('border','1px solid #56A1DB');
+					$(this).css('background','#FAFAFA');
+				});
+				$('.myphoto').mouseout(function(){
+					$(this).css('border','none');
+					$(this).css('background','#fff');
+				});
+			});
+		</script>
+        <!--组图浏览-->
+        <div class="m_photo_list_a" node-type="photo_list">
+		
+			<ul class="photoList clearfix">
+				{foreach $gzpic_list as $vo}
+				<li  action-data="pid=3642504728738567&amp;aid=3423857315111989&amp;type=2" >
+					
+					<dl class="m_photoItem m_photoItem_a">
+						<dt class="photo myphoto" >
+							<a href="{:U('Picgz/picshow')}?picid={$vo['id']}&uid={$vo['uid']}&photoid={$vo['photo_id']}" title="">
+								<img src="{$Think.const.APP_INDEX}uploads/pic/{$vo['picname']}" width="200">
+							</a>
+						</dt>
+						<dd class="ppicid">
+							<div class="mark_box M_txtb">
+								<p class="time">{$vo['addtime']|date="Y-m-d",###}</p>
+								<!-- <a class="M_linke M_transmit_sm" href="http://photo.weibo.com/2664098951/photos#" title="分享" action-type="photo_forward">
+									<span class="M_ico M_icon4"></span>0
+								</a>
+								<a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3642504728738567">
+									<span class="M_ico M_icon5"></span>0
+								</a>
+								<a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3642504728738567&amp;like_uid=2664098951&amp;type=2&amp;property=1&amp;count=0" action-type="like">
+									<span class="M_ico M_icon6"></span>0
+								</a> -->
+							</div>
+							<p class="picid" style="display:none;">{$vo['id']}</p>
+							<p class="puid" style="display:none;">{$vo['uid']}</p>
+							<p class="desc" title=""></p>图片描述:
+							<span class="description">{$vo['descrip']}</span>
+							<!-- <div class="edit_tip">
+								<a href="javascript:void(0);" action-type="photo_edit">编辑</a>
+								<span class="M_vline M_txtd"></span>
+								<a href="{:U('Pic/del')}?picid={$vo['id']}&uid={$vo['uid']}" action-type="photo_del">删除</a>
+							</div> -->
+						</dd>
+					</dl>
+				</li>
+				{/foreach}
+				
+				<!--
+				<li action-data="pid=3605345632135804&amp;aid=3423857315111989&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3605345632135804" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1e73hc4ojczj203x03rwen.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2013-07-29</p><a class="M_linke M_transmit_sm" href="http://photo.weibo.com/2664098951/photos#" title="分享" action-type="photo_forward"><span class="M_ico M_icon4"></span>0</a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3605345632135804"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3605345632135804&amp;like_uid=2664098951&amp;type=2&amp;property=1&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li><li action-data="pid=3492001052679519&amp;aid=3454582265827570&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492001052679519" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vw4a5sjj.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2012-09-19</p><a class="M_txtb M_transmit_un" href="javascript:void(0)"><span class="M_ico M_icon4_un"></span><span>0</span></a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492001052679519"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3492001052679519&amp;like_uid=2664098951&amp;type=2&amp;property=2&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li><li action-data="pid=3492001048485213&amp;aid=3454582265827570&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492001048485213" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vw4c2f5j.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2012-09-19</p><a class="M_txtb M_transmit_un" href="javascript:void(0)"><span class="M_ico M_icon4_un"></span><span>0</span></a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492001048485213"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3492001048485213&amp;like_uid=2664098951&amp;type=2&amp;property=2&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li><li action-data="pid=3492001044290904&amp;aid=3454582265827570&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492001044290904" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vw3cchdj.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2012-09-19</p><a class="M_txtb M_transmit_un" href="javascript:void(0)"><span class="M_ico M_icon4_un"></span><span>0</span></a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492001044290904"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3492001044290904&amp;like_uid=2664098951&amp;type=2&amp;property=2&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li><li action-data="pid=3492000700357656&amp;aid=3454582265827570&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492000700357656" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vunv8eej.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2012-09-19</p><a class="M_txtb M_transmit_un" href="javascript:void(0)"><span class="M_ico M_icon4_un"></span><span>0</span></a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492000700357656"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3492000700357656&amp;like_uid=2664098951&amp;type=2&amp;property=2&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li><li action-data="pid=3492000696163348&amp;aid=3454582265827570&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492000696163348" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vundhsgj.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2012-09-19</p><a class="M_txtb M_transmit_un" href="javascript:void(0)"><span class="M_ico M_icon4_un"></span><span>0</span></a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492000696163348"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3492000696163348&amp;like_uid=2664098951&amp;type=2&amp;property=2&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li><li action-data="pid=3492000478059314&amp;aid=3454582265827570&amp;type=2"><dl class="m_photoItem m_photoItem_a"><dt class="photo"><a href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492000478059314" title=""><img src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vtr2b0ij.jpg"></a></dt><dd><div class="mark_box M_txtb"><p class="time">2012-09-19</p><a class="M_txtb M_transmit_un" href="javascript:void(0)"><span class="M_ico M_icon4_un"></span><span>0</span></a><a class="M_linke M_comment_sm" title="评论" href="http://photo.weibo.com/2664098951/photos/detail/photo_id/3492000478059314"><span class="M_ico M_icon5"></span>0</a><a class="M_linke M_like_sm" title="赞" href="http://photo.weibo.com/2664098951/photos#" action-data="target_id=3492000478059314&amp;like_uid=2664098951&amp;type=2&amp;property=2&amp;count=0" action-type="like"><span class="M_ico M_icon6"></span>0</a></div><p class="desc" title=""></p><div class="edit_tip"><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_edit">编辑</a><span class="M_vline M_txtd"></span><a href="http://photo.weibo.com/2664098951/photos#" action-type="photo_del">删除</a></div></dd></dl></li>-->
+				
+			</ul>
+			<div style="text-align:center;font-size:18px;">{$picpageshow}</div>
+		</div>
+        <!--/组图浏览-->
+        <!--翻页-->
+        <div class="m_pages" node-type="photo_page"></div>
+        <!--/翻页-->
+      </div>
+	 <!--点击55编辑 按钮弹出编辑框 ,修改图片描述信息-->
+	 <script>
+		$(function(){
+			//点击编辑标签，让编辑框显示出来
+			$("a[action-type='photo_edit']").click(function(){
+				$(".L_layer").css('display','block');
+				picid = $(this).parent().parent().children('.picid').html();
+				description = $(this).parent().parent().children('.description');
+				//alert(picid);
+				
+			});
+			//获取取消按钮 让编辑框隐藏起来
+			$("a[action-type='close']").click(function(){
+				$(".L_layer").css('display','none');
+				
+			});
+			//获去编辑框中的保存按钮添加点击事件，并发送ajax
+			
+			$("a[action-type='save']").click(function(){
+				//获取描述内容
+				var descrip = $("textarea[name='descrip']").val();
+				//alert(descrip);
+				//获取照片id值为picid
+				//alert(picid);
+				//获取发布照片用户的用户uid
+				var uid = $(".puid").html();
+				//alert(uid);
+				//执行ajax
+				$.ajax({
+					url:"{:U('Pic/update')}",
+					type:"post",
+					data:{id:picid,uid:uid,descrip:descrip},//参数
+					dataType:"html", //返回的数据类型
+					async:true, //是否异步
+					success:function(){
+						//编辑框关闭
+						$(".L_layer").css('display','none');
+						description.html(descrip);
+						alert("编辑成功！");
+					   //spanid.html(8);
+					   
+					},
+					error:function(){
+						alert("删除失败！");
+					}
+			});
+				
+				
+			});
+			
+		});
+	 </script>
+	 <!--编辑的div 55行编辑按钮-->
+	 <div class="L_layer" node-type="outer" style="position: absolute; z-index: 100100; visibility: visible; top: 291px; left: 413px;display:none;" id="layer_14569860537111" stk-mask-key="14569860537112"><div class="bg"><table border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div class="content" node-type="layoutContent"><div node-type="title" class="title" style="cursor: move;"><span node-type="title_content">编辑照片</span></div><a node-type="close" action-type="close" title="关闭" href="javascript:void(0)" class="close"></a><div node-type="inner"><div class="L_editphoto">
+		<dl class="m_Layform clearfix">
+			<dt>照片描述：</dt>
+			<dd class="contBox"><textarea class="M_txtarea" name="descrip" node-type="caption"></textarea></dd>
+			<dd class="tipBox"><span class="M_txte" node-type="caption_w">140字以内</span></dd>
+		</dl>
+		<!-- <dl class="m_Layform clearfix">
+			<dt>照片标签：</dt>
+			<dd class="contBox">
+				<div class="inputtxt">
+					<div action-type="tag_box" class="inputbd clearfix">
+						<div class="taglst m_tag_a M_linkc" node-type="photo_tags_3642504728738567"></div>
+						<input title="标签间以空格隔开" type="text" name="3642504728738567" node-type="single_tag_input" value="标签间以空格隔开" class="M_txte">
+						<input type="hidden" name="3642504728738567" node-type="pid">
+					</div>
+					<div class="tagarea">
+						<div class="m_tag_a M_linkc" node-type="common_tags"></div>
+					</div>
+					<div class="setcover M_txtb">
+						<label>
+											</label>
+					</div>
+				</div>
+			</dd>
+		</dl> -->
+		<div class="submit_centr">
+			<a class="M_btn_e" action-type="save" href="javascript:void(0);"><span>保存</span></a><a class="M_btn_e" action-type="close" href="javascript:void(0);"><span >取消</span></a>
+		</div>
+	</div></div></div></td></tr></tbody></table></div></div>
+	  
+	  
+      <!--/F_cols_main-->
+      <!--F_cols_second-->
+	  
+      <div class="F_cols_second">
+		<br>
+      	<div class="album_count M_txta" node-type="album_info">共{$gzphoto_pic_total}个可见专辑</div>
+      	<!-- 图片列表 -->
+        <div class="m_piclist">
+          <ul node-type="album_list">
+			{foreach $gzphoto_list as $pl}
+			<li action-data="aid=3423857315111989" style="border:1px solid #ccc;">
+				<div class="m_cover m_cover_a" >
+					<div class="img_wrap" style="border:1px solid #ccc;">
+						<a title="{$pl['title']}" href="{:U('Picgz/photo')}?uid={$pl['uid']}">
+							<img height="90" width="90" src="{$Think.const.APP_INDEX}uploads/pic/{$pl['photoname']}">
+						</a>
+					</div>
+				</div>
+				<p style="color:red;font-weight:bold;">
+					<a title="{$pl['title']}" href="{:U('Picgz/photo')}?uid={$pl['uid']}" class="M_linkb">{$pl['title']}</a>
+				</p>
+				<p class="M_txtb">{$pl['content']}</p>
+			</li>
+			{/foreach}
+			<!-- <li action-data="aid=3560110618585734">
+				<div class="m_cover m_cover_a"><div class="img_wrap"><a title="微博配图" href="http://photo.weibo.com/2664098951/talbum/index"><img height="90" width="90" src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87jw1e7mje43lwtj208c05kdfy.jpg"></a></div></div><p><a title="微博配图" href="http://photo.weibo.com/2664098951/talbum/index" class="M_linkb">微博配图</a></p><p class="M_txtb">(共52张)</p></li><li action-data="aid=3454582265827570"><div class="m_cover m_cover_a"><div class="img_wrap"><a title="默认专辑" href="http://photo.weibo.com/2664098951/albums/detail/album_id/3454582265827570"><img height="90" width="90" src="{$Think.const.APP_INDEX}common/myphoto/9ecaec87gw1dx1vw4a5sjj(1).jpg"></a></div></div><p><a title="默认专辑" href="http://photo.weibo.com/2664098951/albums/detail/album_id/3454582265827570" class="M_linkb">默认专辑</a></p><p class="M_txtb">(共6张)</p>
+			</li> -->
+			<p><a href="{:U('Picgz/photo')}?uid={$pusername['id']}">查看更多...</a></p>
+		</ul>
+          <div class="m_listpage" node-type="album_page"></div>
+        </div>
+        <!--/图片列表 -->
+      </div>
+      <!--/F_cols_second-->
+	</div>
+
+	
+	<!-- ======================================================我的相册结束===============================================================-->
+	
+{include file="public/footergz"}

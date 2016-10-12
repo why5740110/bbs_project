@@ -1,0 +1,9 @@
+body{
+	background-image:url("../../images/search/s_bg_1.jpg");
+	padding:0px 300px;
+}
+.main{
+	width:600px;
+	background:white;
+	padding:50px;
+}
