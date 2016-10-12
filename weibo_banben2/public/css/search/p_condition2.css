@@ -1,0 +1,31 @@
+.h_city{
+	font-size:12px;
+}
+#h_city_l{
+	float:left;
+}
+#h_city_r{
+	float:right;
+}
+.h_city_top{
+	width:280px;
+	height:10px;
+}
+.h_user_type{
+	height:47px;
+	width:68px;
+	line-height:47px;
+	text-align:center;
+}
+.h_user_sex{
+	height:43px;
+	width:65px;
+	line-height:43px;
+	text-align:center;
+}
+.h_user_age{
+	height:47px;
+	width:68px;
+	line-height:47px;
+	text-align:center;
+}

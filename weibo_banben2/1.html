@@ -1,0 +1,83 @@
+    {foreach $article as $vo}
+    {if $vo['istrue']==1}
+
+            <div class=\"weibo\">
+                
+                <div class=\"face\">
+                    <a href=\"\">
+                        <img style=\"border-radius:100px;\"   src=\"{$Think.const.APP_PUBLIC}/Images/1.jpg\" width='50' height='50'/>
+                    </a>
+                </div>
+                <div class=\"wb_cons\">
+                    <dl>
+                    
+                        <dt class='author'>
+                            <a href=\"\">{$vo['nickname']}</a>
+                        </dt><br>
+                    
+                        <dd class='content'>
+                            <p style=\"font-size:15px;\">{$vo['content']}</p>
+                        </dd>
+                    
+                        <dd>
+                            <div class='wb_img'>
+                            
+                            {if !empty($vo['pic'])}
+                                {foreach $vo['pic'] as $vvo}
+                                <img src=\"{$Think.const.APP_PUBLIC}/uploads/weibo/{$vvo}\" width=80; class='mini_img'/>
+                                {/foreach}
+                            {/if}
+                                <div class=\"img_tool hidden\">
+                                    <ul>
+                                        <li>
+                                            <i class='icon icon-packup'></i>
+                                            <span class='packup'>&nbsp;收起</span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <i class='icon icon-bigpic'></i>
+                                            <a href=\"\" target='_blank'>&nbsp;查看大图</a>
+                                        </li>
+                                    </ul>
+                                
+                                    <div class=\"img_info\"><img src=\"\"/></div>
+                                </div>
+                            </div>
+                        </dd>
+                    
+                    </dl>
+                
+                    <div class=\"wb_tool\">
+                    
+                        <span class=\"send_time\">8分钟前 来自 军报微博聚合平台</span><br>
+                        <div>
+                            <ul>
+                                <li><span class='turn' id=''>转发 12</span></li>
+                                <li><span class='keep'>收藏 13</span></li>
+                                <li><span class='comment' wid=''>评论 14</span></li>
+                                <li><span class='comment' wid=''><img data=\"{:U('Indexajax/dianzan')}\" src=\"{$Think.const.APP_PUBLIC}/Images/weizan.png\" /> 15</span></li>
+                            </ul>    
+                        </div>
+                    </div>
+                
+                    <div class='comment_load hidden'>
+                        <img src=\"{$Think.const.APP_PUBLIC}/Images/loading.gif\">评论加载中，请稍候...
+                    </div>
+                    <div class='comment_list hidden'>
+                        <textarea name=\"\" sign=''></textarea>
+                        <ul>
+                            <li class='phiz fleft' sign=''></li>
+                            <li class='comment_turn fleft'>
+                                <label>
+                                    <input type=\"checkbox\" name=''/>同时转发到我的微博
+                                </label>
+                            </li>
+                            <li class='comment_btn fright' wid='' uid=''>评论</li>
+                        </ul>
+                    </div>
+                
+                </div>
+            </div>
+            <span class=\"end\"></span>
+    {/if}
+{/foreach}

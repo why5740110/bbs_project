@@ -1,0 +1,71 @@
+<form id="pagerForm" action="{:U('Link/index')}" method="post">
+	<input type="hidden" name="pageNum" value="{$currentPage|default='1'}" />
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" /><!--每页显示多少条-->
+	<input type="hidden" name="_order" value="{$Think.request._order|default='1'}"/>
+	<input type="hidden" name="_sort" value="{$Think.request._sort|default='1'}"/>
+</form>
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" /><!--每页显示多少条-->
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<b>搜索</b> &nbsp; 关键字：<input type="text" name="keyword" value="{$Think.post.keyword|default=''}" /> 
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{:U('Link/add')}" target="dialog" width="550" height="300" rel="Linkadd" title="添加友情连接"><span>添加</span></a></li>
+			<li><a class="delete" href="{:U('Link/del')}?id={item_id}&navTabId=linkList" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="{:U('Link/edit')}?id={item_id}"  width="550" height="300" target="dialog"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="112">
+		<thead>
+			<tr>
+				<th width="40"  orderField="id">友链号</th>
+				<th width="40"  orderField="id">友链名</th>
+				<th width="150">url地址</th>
+				<th width="150" orderField="age">排序</th>
+				<th width="150">状态</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach $list as $vo}
+				<tr target="item_id" rel="{$vo.id}">
+					<td>{$vo.id}</td>
+					<td>{$vo.linkname}</td>
+					<td>{$vo.url}</td>
+					<td>{$vo.order_id}</td>
+					<td>{$vo.status=='1'?'显示':'隐藏'}</td>
+				</tr>
+			{/foreach}
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="5" {$numPerPage==5?="selected"}>5</option>
+				<option value="10" {$numPerPage==10?="selected"}>10</option>
+				<option value="15" {$numPerPage==15?="selected"}>15</option>
+				<option value="20" {$numPerPage==20?="selected"}>20</option>
+				<option value="25" {$numPerPage==25?="selected"}>25</option>
+				<option value="30" {$numPerPage==30?="selected"}>30</option>
+			</select>
+			<span>共{$totalCount|default='0'}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount|default='0'}" numPerPage="{$numPerPage}" pageNumShown="5" currentPage="{$currentPage|default='0'}"></div>
+	</div>
+</div>

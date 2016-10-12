@@ -1,0 +1,32 @@
+.big{
+	width:1365px;
+	height:642px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:black;
+	opacity:0.2;
+	display:none;
+}
+.gjk{
+	width:560px;
+	height:400px;
+	background:white;
+	position:absolute;
+	top:120px;
+	left:330px;
+	display:none;
+}
+.g_top{
+	width:560px;
+	height:30px;
+	background:yellow;
+	opacity:0.7;
+}
+.g_top span{
+	line-height:30px;
+	font-size:14px;
+}
+.g_main input{
+	
+}

@@ -1,0 +1,193 @@
+{include file="public/top"}
+	  
+	    <!-- ======================================================我已赞开始===============================================================-->
+        <!--/F_rows-->
+        <!--F_cols_main-->
+	    <!--鼠标移动上去 头像的放大到100px 移出恢复到原来大小-->
+	    <script>
+		    $(function(){
+				//获取图片取消收藏按钮 并绑定点击事件
+				$("a[action-type='cancel_favorite']").click(function(){
+					//获取该图片的picid
+					var picid = $(this).parent().parent().children('.picid').html();
+					//alert(picid);
+					//执行ajax请求 执行取消收藏功能
+					if(confirm("确定取消收藏该图片吗？")){
+						$.ajax({
+							url:"{:U('Picshoucang/close')}",
+							type:'post',
+							data:{picid:picid},
+							dataType:'html',
+							async:true,
+							success:function(){
+								window.location.href="{:U('Picshoucang/index')}";
+								alert('已成功取消收藏图片');
+							},
+							error:function(){
+								alert('失败！');
+							}
+						});
+					}
+				});
+				
+				//获取相册取消收藏按钮 并绑定点击事件
+				$("a[action-type='cancel_photofavorite']").click(function(){
+					//获取该图片的picid
+					var photoid = $(this).parent().parent().children('.photoid').html();
+					//alert(photoid);
+					//执行ajax请求 执行取消收藏功能
+					if(confirm("确定取消收藏该相册吗？")){
+						$.ajax({
+							url:"{:U('Photo/close')}",
+							type:'post',
+							data:{photoid:photoid},
+							dataType:'html',
+							async:true,
+							success:function(){
+								window.location.href="{:U('Picshoucang/index')}";
+								alert('已成功取消收藏相册');
+							},
+							error:function(){
+								alert('失败！');
+							}
+						});
+					}
+				});
+				
+				
+				//=================================================================================
+				//控制收藏的照片和收藏的专辑按钮 并选择各自的div显示并展示出来
+				//获取收藏的照片 按钮
+				$("a[action-type='pic_shoucang']").click(function(){
+					//收藏图片的div显示
+					$(".Fic_main").css("display","block");
+					//收藏相册的div隐藏
+					$(".Fhoto_main").css("display","none");
+					//共计几张图片显示
+					$("span[node-type='pic_info']").css("display","block");
+					//共计几张专辑隐藏
+					$("span[node-type='photo_info']").css("display","none");
+					
+				});
+				
+				//获取收藏的专辑 按钮
+				$("a[action-type='photo_shoucang']").click(function(){
+					//收藏图片的div隐藏
+					$(".Fic_main").css("display","none");
+					//收藏相册的div显示
+					$(".Fhoto_main").css("display","block");
+					//共计几张图片隐藏
+					$("span[node-type='pic_info']").css("display","none");
+					//共计几张专辑显示
+					$("span[node-type='photo_info']").css("display","block");
+				});
+				
+			 
+		    });
+	    </script>
+	    <div style="width:950px;">
+			<div class="m_menutab M_linkc clearfix">
+				<ul class="tab" node-type="inner_nav">
+					<li class="it"><a href="javascript:void(0);" action-type="pic_shoucang">收藏的照片</a></li>                       
+					<li class="it"><a href="javascript:void(0);" action-type="photo_shoucang">收藏的专辑</a></li>
+				</ul>
+				<span class="count M_txta" node-type="pic_info" style="display:block;">共{$shoucang_count}张照片</span>
+				<span class="count M_txta" node-type="photo_info" style="display:none;">共{$photoshoucang_count}张专辑</span>
+			</div>
+			<div style="width:100%;height:20px;"></div>
+			
+			<!--用户收藏的图片信息列表开始处-->
+			<div class="Fic_main" style="display:block;">
+				<!--用户专辑列表-->
+				<div class="m_user_piclist" node-type="pic_list" >
+					<ul class="user_photolist clearfix" >
+						{foreach $res as $key=>$vo}
+						<li style="float:left;width:237px;height:282px;">
+							<dl class="m_fav_pic">
+								<dt class="photo">
+									<a title="" href="{:U('Picgz/picshow')}?picid={$vo['picid']}&photoid={$vo['photoid']}&uid={$vo['puid']}">
+										<img class="img" title="收藏图片" alt="收藏图片" src="{$Think.const.APP_INDEX}uploads/pic/{$vo['picname']}" width="200" height="200">
+									</a>
+								</dt>
+								<dd>
+									<p class="title">所在专辑 
+										<a class="M_linkb" href="{:U('Picgz/photopic')}?uid={$vo['puid']}&photoid={$vo['photoid']}">
+											<strong title="{$vo['username']}">{$vo['title']}</strong>
+										</a>
+									</p>
+									<p class="status M_txtb">来自：
+										<a href="{:U('Picgz/index')}?uid={$vo['puid']}" title="{$vo['username']}">{$vo['username']}</a>
+									</p>
+									<p class="picid" style="display:none;">{$vo['picid']}</p>
+									<p class="edit M_txtd">
+										<a href="javascript:void(0);" action-data="target_id=3781636289355776&amp;type=2" action-type="cancel_favorite">取消收藏</a>
+									</p>
+								</dd>
+							</dl>
+						</li>
+						{/foreach}
+					</ul>
+					<div style="text-align:center;font-size:15px;">{$listpage}</div>
+				</div>
+				<!--/用户专辑列表-->
+				<!--翻页-->
+				<div class="m_pages" node-type="photo_page"></div>
+				<!--/翻页-->
+			</div>
+			<!--用户收藏的图片信息列表结束处-->
+			
+			<!--用户收藏的相册信息列表开始处-->
+			<div class="Fhoto_main" style="display:none;">
+				<!--用户专辑列表-->
+				<div class="m_user_photolist" node-type="photo_list" >
+					<ul class="user_photolist clearfix" >
+						{foreach $photocanglist as $key=>$vt}
+						<li style="float:left;width:237px;height:282px;">
+							<dl class="m_fav_pic">
+								<dt class="photo">
+									<a title="" href="{:U('Picgz/photopic')}?uid={$vt['puid']}&photoid={$vt['photoid']}">
+										<img class="img" title="收藏专辑" alt="收藏专辑" src="{$Think.const.APP_INDEX}uploads/pic/{$vt['photoname']}" width="200" height="200">
+									</a>
+								</dt>
+								<dd>
+									<p class="title">所在专辑 
+										<a class="M_linkb" href="{:U('Picgz/photopic')}?uid={$vt['puid']}&photoid={$vt['photoid']}">
+											<strong title="{$vt['username']}">{$vt['title']}</strong>
+										</a>
+									</p>
+									<p class="status M_txtb">来自：
+										<a href="{:U('Picgz/index')}?uid={$vt['puid']}">{$vt['username']}</a>
+									</p>
+									<p class="photoid" style="display:none;">{$vt['photoid']}</p>
+									<p class="edit M_txtd">
+										<a href="javascript:void(0);" action-data="" action-type="cancel_photofavorite">取消收藏</a>
+									</p>
+								</dd>
+							</dl>
+						</li>
+						{/foreach}
+					</ul>
+					<div style="text-align:center;font-size:15px;">{$listpage1}</div>
+				</div>
+				
+			
+				
+				<!--/用户专辑列表-->
+				<!--翻页-->
+				<div class="m_pages" node-type="photo_page"></div>
+				<!--/翻页-->
+			</div>
+			<!--用户收藏的相册信息列表结束处-->
+			
+			
+	    </div>
+	  
+	  
+	  
+	  
+	  
+	 
+	
+	<!-- ======================================================我已赞结束===============================================================-->
+	
+{include file="public/footer"}

@@ -1,0 +1,71 @@
+<form id="pagerForm" action="{:U('Guanggao/index')}" method="post">
+	<input type="hidden" name="pageNum" value="{$currentPage|default='1'}" />
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" /><!--每页显示多少条-->
+	<input type="hidden" name="_order" value="{$Think.request._order|default='1'}"/>
+	<input type="hidden" name="_sort" value="{$Think.request._sort|default='1'}"/>
+</form>
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" /><!--每页显示多少条-->
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<b>搜索</b> &nbsp; 关键字：<input type="text" name="keyword" value="{$Think.post.keyword|default=''}" /> 
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{:U('Guanggao/add')}" target="dialog" width="550" height="300" rel="guanggaoadd" title="添加学生信息"><span>添加</span></a></li>
+			<li><a class="delete" href="{:U('Guanggao/del')}?id={item_id}&navTabId=guanggaolist" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="{:U('Guanggao/edit')}?id={item_id}"  width="550" height="300" target="dialog"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+		</ul>
+	</div>
+	<table class="list" border="1" width="700" class="table" layoutH="112">
+			<!--<caption><a href="{:U('Guanggao/add')}">点击添加广告信息</a></caption>-->
+			<tr>
+				<th align="center" orderField="id">编号</th>
+				<th align="center">广告标题</th>
+				<th align="center" orderField="imagename">图片</th>
+				<th align="center">链接</th>
+				<th align="center">位置</th>
+				<th align="center">排序</th>
+			</tr>
+			
+			{foreach $list as $vo}
+			<tr height="50" class="gtr" align="center" target="item_id" rel="{$vo.id}">
+				<td class="gid">{$vo['id']}</td>
+				<td>{$vo['title']}</td>
+				<td><img src="{$Think.const.APP_PUBLIC}/uploads/guanggao/{$vo['imagename']}" height="50"></td>
+				<td>{$vo['link']}</td>
+				<td>{$vo['position']}</td>
+				<td>{$vo['orderid']}</td>
+			</tr>
+			{/foreach}
+		</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="5" {$numPerPage==5?="selected"}>5</option>
+				<option value="10" {$numPerPage==10?="selected"}>10</option>
+				<option value="15" {$numPerPage==15?="selected"}>15</option>
+				<option value="20" {$numPerPage==20?="selected"}>20</option>
+				<option value="25" {$numPerPage==25?="selected"}>25</option>
+				<option value="30" {$numPerPage==30?="selected"}>30</option>
+			</select>
+			<span>共{$totalCount|default='0'}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount|default='0'}" numPerPage="{$numPerPage}" pageNumShown="5" currentPage="{$currentPage|default='0'}"></div>
+	</div>
+</div>

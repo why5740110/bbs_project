@@ -1,0 +1,55 @@
+{include file="public/topgz"}
+	  
+	  <!-- ======================================================我已赞开始===============================================================-->
+      <!--/F_rows-->
+      <!--F_cols_main-->
+	  
+	  <!--鼠标移动上去 头像的放大到100px 移出恢复到原来大小-->
+	  <script>
+		  $(function(){
+			  //获取用户头像的节点 并绑定移入事件
+			  $(".dzan_user .userimage").mouseover(function(){
+				  //$(this).css('z-index','22');
+				 //$(".userimage .pic").css('width','100px');
+				  
+			  });
+			  //获取用户头像的节点 并绑定移出事件
+			  $(".dzan_user .userimage").mouseout(function(){
+				  //$(".userimage .pic").css('width','50px');
+			  });
+			  
+			  
+		  });
+	  </script>
+	  
+	  <div style="width:950px;<!-- background:rgba(20,22,111,0.1); -->">
+			<ul id="dzan_list">
+				
+					{foreach $res as $key=>$v}
+						<li class="dzan_user" style="height:60px;width:980;border-bottom:1px solid #ccc;padding-left:10px;margin-top:5px;position:relative">
+							<div class="userimage" style="float:left;position:sbsolute;top:0px;left:0px;z-index:10;">
+								<a href="{:U('picgz/index')}?uid={$key}">
+									
+									<img class="pic" src="{$Think.const.APP_INDEX}uploads/txpic/{$puserlist['picname']}" width=50px alt="头像" >
+								</a>
+							</div>
+							<span style="margin-left:10px;">他已赞了 <a href="{:U('Picgz/index')}?uid={$userlist[$key]['id']}">{$userlist[$key]['username']}</a> 的照片</span>
+							{foreach $res[$key] as $b}
+							
+								<img src="{$Think.const.APP_INDEX}uploads/pic/{$b}" width="40">
+							
+							{/foreach}
+						</li>
+					{/foreach}
+				
+			</ul>
+			<div style="text-align:center;font-size:15px;">{$listpage}</div>
+	  </div>
+	  
+	 
+	  
+	 
+	
+	<!-- ======================================================我已赞结束===============================================================-->
+	
+{include file="public/footergz"}
