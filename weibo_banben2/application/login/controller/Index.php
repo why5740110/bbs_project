@@ -18,7 +18,7 @@ class Index extends Controller
 
     	$mod = M('user');
     	$user = $mod -> where("username = '{$username}' AND passwd = '{$passwd}'") -> select();
-    	if($user){
+    	if($user){//login introduce
             //$_SESSION['id'] = $user[0]['id'];
             session('id',$user[0]['id']);
             $res = M("user_details") -> where("uid = {$user[0]['id']}") ->find();
